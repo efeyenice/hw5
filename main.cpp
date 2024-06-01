@@ -17,15 +17,16 @@ int main()
         cout << "Menu:" << endl << "1. Add a new book" << endl << "2. Display all books" << endl << "3. Search for a book by title" << endl << "4. Exit" << endl 
         << "Enter your choice: ";
         cin >> opt;
-
+        cin.ignore();
         if(opt == 1)
         {
+            cin.clear();
             string title;
             cout << "Enter title: ";
-            cin >> title;
+            getline(cin, title);
             string author;
             cout << "Enter author: ";
-            cin >> author;
+            getline(cin, author);
             int year;
             cout << "Enter year: ";
             cin >> year;
@@ -38,7 +39,7 @@ int main()
         else if(opt == 2 && bookCollection.size())
         {
             sortVector(bookCollection);
-            for(int i = 0; i < bookCollection.size(); i++)
+            for(int i = bookCollection.size() -1; i > -1; i--)
             {
                 bookCollection[i].printInfo();
                 cout << "-------------------" << endl;
@@ -48,7 +49,7 @@ int main()
         {
             string searchTitle;
             cout << "Enter the title to search: ";
-            cin >> searchTitle;
+            getline(cin, searchTitle);
             bool bookNotFound = true;
             for(int i = 0; i < bookCollection.size(); i++)
             {
@@ -63,7 +64,7 @@ int main()
         }
         else if(opt == 4)
         {
-            cout << "Exiting...";
+            cout << "Exiting..." << endl;
             return 0;
         }
         else
