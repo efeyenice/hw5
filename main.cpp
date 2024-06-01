@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<Book> sortVector(vector<Book> &bookCollection);
+void sortVector(vector<Book> &bookCollection);
 
 int main()
 {
@@ -37,8 +37,33 @@ int main()
         }
         else if(opt == 2 && bookCollection.size())
         {
-
+            sortVector(bookCollection);
+            for(int i = 0; i < bookCollection.size(); i++)
+            {
+                bookCollection[i].printInfo();
+                cout << "-------------------" << endl;
+            }
         }
     }
     return 0;
+}
+
+
+
+void sortVector(vector<Book> &bookCollection)
+{
+    int k, loc, numElts = bookCollection.size();
+    for(k = 1; k < numElts; k++)
+    {
+        Book hold = bookCollection[k];
+        loc = k;
+
+        while(0 < loc && hold.getTitle() < bookCollection[loc - 1].getTitle())
+        {
+            bookCollection[loc] = bookCollection[loc -1];
+            loc--;
+        }
+        bookCollection[loc] = hold;
+    }
+
 }
