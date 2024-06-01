@@ -44,6 +44,32 @@ int main()
                 cout << "-------------------" << endl;
             }
         }
+        else if(opt == 3 && bookCollection.size())
+        {
+            string searchTitle;
+            cout << "Enter the title to search: ";
+            cin >> searchTitle;
+            bool bookNotFound = true;
+            for(int i = 0; i < bookCollection.size(); i++)
+            {
+                if(searchTitle == bookCollection[i].getTitle())
+                {
+                    bookCollection[i].printInfo();
+                    bookNotFound = false;
+                }
+            }
+            if(bookNotFound)
+                cout << "Book not found!" << endl;
+        }
+        else if(opt == 4)
+        {
+            cout << "Exiting...";
+            return 0;
+        }
+        else
+        {
+            cout << "The book collection is currently empty. Please add some books first." << endl;
+        }
     }
     return 0;
 }
